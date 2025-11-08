@@ -6,9 +6,21 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PIPELINE_PATH = os.path.join(BASE_DIR, "models", "sentiment_pipeline.joblib")
 CLASSES_PATH  = os.path.join(BASE_DIR, "models", "classes.joblib")
 
+DEFAULT_LABELS = ["Negative", "Neutral", "Positive"]
+
+def normalize_classes(cls):
+    try:
+        # Si vienen como "0","1","2" o 0,1,2 -> devolvemos etiquetas de texto por orden
+        if all(str(c).isdigit() for c in cls):
+            return DEFAULT_LABELS[:len(cls)]
+        return list(cls)
+    except Exception:
+        return DEFAULT_LABELS
+
 try:
     pipeline = joblib.load(PIPELINE_PATH)
     classes  = joblib.load(CLASSES_PATH)
+    classes  = normalize_classes(classes)
 except Exception as e:
     print("Error cargando artefactos:", e)
     pipeline, classes = None, None
