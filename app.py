@@ -37,12 +37,16 @@ def predict():
 
         probs = pipeline.predict_proba([text])[0]
         pred_idx = int(np.argmax(probs))
-        prediction = classes[pred_idx]
+
+        etiquetas = {0: "Negative", 1: "Neutral", 2: "Positive"}
+        prediction = etiquetas.get(pred_idx, str(pred_idx))
+
+        probas_dict = {etiquetas.get(i, str(i)): float(probs[i]) for i in range(len(probs))}
 
         return jsonify({
             "prediction": prediction,
             "confidence": float(probs[pred_idx]),
-            "probas": {classes[i]: float(probs[i]) for i in range(len(classes))}
+            "probas": probas_dict
         }), 200
 
     except Exception as e:
