@@ -21,12 +21,7 @@ app.config['JSON_AS_ASCII'] = False
 def home():
     return jsonify({
         "status": "online",
-        "message": "API de análisis de sentimientos lista para recibir texto.",
-        "example": {
-            "endpoint": "/predict",
-            "input": {"text": "Me encanta esta app, funciona perfecto."},
-            "output": {"prediction": "Positive", "confidence": 0.98}
-        }
+        "message": "API de análisis de sentimientos lista para recibir texto."
     }), 200
 
 @app.route("/predict", methods=["POST"])
