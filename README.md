@@ -17,14 +17,14 @@ Tecnologías utilizadas
 
 
 Estructura del proyecto
-Proyecto7_API/
-├── app.py
-├── requirements.txt
-├── README.md
-├── models/
-│   ├── sentiment_pipeline.joblib
-│   └── classes.joblib
-└── utils/
+- Proyecto7_API
+-- app.py
+-- requirements.txt
+-- README.md
+-- models/
+----sentiment_pipeline.joblib
+----classes.joblib
+--utils/
 
 
 Modelo
