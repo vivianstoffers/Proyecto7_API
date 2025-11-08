@@ -15,6 +15,7 @@ except Exception as e:
 
 app = Flask(__name__)
 CORS(app)
+app.config['JSON_AS_ASCII'] = False
 
 @app.route("/", methods=["GET"])
 def home():
