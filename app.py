@@ -1,10 +1,10 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import joblib, numpy as np
-import traceback
+import joblib, numpy as np, os, traceback
 
-PIPELINE_PATH = "Proyecto7_API/models/sentiment_pipeline.joblib"
-CLASSES_PATH  = "Proyecto7_API/models/classes.joblib"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PIPELINE_PATH = os.path.join(BASE_DIR, "models", "sentiment_pipeline.joblib")
+CLASSES_PATH  = os.path.join(BASE_DIR, "models", "classes.joblib")
 
 try:
     pipeline = joblib.load(PIPELINE_PATH)
